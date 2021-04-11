@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.box{
+			display: flex;
+			align-items: center;
+			padding:10px;
+			margin-bottom: 20px;
+		}
+		.image{
+			margin-right: 25px;
+			background-color: orange;
+			width: 150px;
+			height: 150px;
+			transform:translateX(calc(-100% - 25px));
+			transition: 500ms all;
+		}
+		.text {
+			
+			font-size:40px;
+			transform:scale(.5);
+			
+			transition: 500ms all;
+			opacity: 0;
+		}
+		.box.active .text {
+			opacity: 1;	
+			transform:scale(1);
+		}
+		.box.active .image {
+			transform:translateX(0);
+		}
+
+
+		/*firefox için  scroll bar duzenleme kodu*/
+
+:root {
+    scrollbar-color: rgb(120, 18, 18, 0) rgb(120, 140, 4, 0) !important;
+    scrollbar-width: thin !important;
+
+}
+
+/*firefox için  scroll bar duzenleme kodu*/
+
+/*chrome için scrollbar duzenleme kodu.*/
+
+::-webkit-scrollbar {
+    width: 5px;
+    background: transparent;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 1px rgb(224, 109, 109, 0); 
+    border-radius: 10px;
+    
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: #C3C3C3;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0D0D0D;
+    
+}
+	</style>
+</head>
+<body>
+
+	<div class="box">
+
+		<div class="image"></div>
+		<p class="text">Lorem ipsum dolor</p>
+	
+	</div>
+	<div class="box">
+
+		<div class="image"></div>
+		<p class="text">Lorem ipsum dolor</p>
+	
+	</div>
+	<div class="box">
+
+		<div class="image"></div>
+		<p class="text">Lorem ipsum dolor</p>
+	
+	</div>
+	<div class="box">
+
+		<div class="image"></div>
+		<p class="text">Lorem ipsum dolor</p>
+	
+	</div>
+	<div class="box">
+
+		<div class="image"></div>
+		<p class="text">Lorem ipsum dolor</p>
+	
+	</div>
+	<div class="box">
+
+		<div class="image"></div>
+		<p class="text">Lorem ipsum dolor</p>
+	
+	</div>
+	<div class="box">
+
+		<div class="image"></div>
+		<p class="text">Lorem ipsum dolor</p>
+	
+	</div>
+	<div class="box">
+
+		<div class="image"></div>
+		<p class="text">Lorem ipsum dolor</p>
+	
+	</div>
+	<div class="box">
+
+		<div class="image"></div>
+		<p class="text">Lorem ipsum dolor</p>
+	
+	</div>
+
+
+
+
+	<template id="content">
+	<div id="box" alt=""></div> 
+	<p>Lorem ipsum dolor sit amet, consectetur, adipisicing elit. Odio?</p>
+	</template>
+
+	<!--  -->
+	<a href="#" id="load-more-btn">daha fazla yukle</a>
+	<script>
+
+		const targets = document.querySelectorAll(".box");
+ 		// let content = document.getElementById("content");
+ 		// let cantainer = document.getElementById("cantainer");
+
+		const callback = (entries) => {
+			
+				for(const entry of entries){
+				if(entry.isIntersecting){
+					entry.target.classList.add("active");
+				}else{
+					entry.target.classList.remove("active");
+				};
+			};
+
+		};
+
+
+		const options = {
+			threshold:0.25,
+		}
+
+		const observer = new IntersectionObserver(callback, options);
+		targets.forEach((box) => observer.observe(box));
+
+
+
+		/*
+		const target = document.getElementById("box")
+		
+		const callback = (entries) => {
+			
+			if(entries[0].isIntersecting){
+				entries[0].target.src = entries[0].target.dataset.src;
+				console.log(entries[0])
+			}
+		}
+
+		const options = {
+			threshold:0.5, // 0.5 Yuzde ellisi gorunduğunde işlem yaptırabiliriz,
+			root:document.getElementById("container"), // istediğimiz bir elementi yada id ye sahip objeyide secebiliriz.
+			rootMargin: "100px" // sectiğimiz nesnenin margin boşluğunu dikkate almasını sağlayabiliriz.
+		}
+		const observer = new IntersectionObserver(callback,options);
+		observer.observe(target);
+		*/
+	</script>
+
+
+</body>
+</html>
